@@ -1,32 +1,111 @@
-.App {
-  text-align: center;
+@import '../node_modules/antd-mobile/dist/antd-mobile.min.css';
+
+html{
+	font-size:14px;
+}
+@media screen and (max-width: 375px){
+	html{
+		font-size: 12px;
+	}
+}
+@media screen and (min-width: 640px){
+	html{
+		font-size: 16px;
+	}
+}
+body,html{
+	height: 100%;
+}
+.container{
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	max-width: 750px;
+	min-width:320px;
+	margin:0 auto;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.am-search {
+  border-bottom: 1px solid #ddd;
+}
+.sub-title {
+  color: #888;
+  font-size: 14px;
+  padding: 30px 0 18px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#tab-bar.demo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 400 
+}
+#tab-bar .demoName {
+  height: 40px;
+
+}
+#tab-bar .demo-preview-item .am-tab-bar {
+  background-color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.home{
+  display:flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home .head{
+  width: 100%;
+  height: 7.0rem;
+  position: fixed;
+  z-index: 999;
+  background: white;
+  top:0;
 }
+
+.home .head header{
+  width: 100%;
+  height: 3.5rem;
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+.home .head header h1{
+  display: block;
+  float: left;
+  width: 20%;
+  height: 3.0rem;
+  text-align: center;
+  margin: 0%;
+}
+.home .head header h1 img{
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: 0.5rem auto;
+}
+.home .head header input{
+  float: left;
+  display: block;
+  height:2.1rem;
+  line-height: 2.1rem;
+  width: 70%;
+  font-size: 0.8rem;
+  padding-left: 3.2rem;
+  border: solid 1px #666;
+  border-radius: 2.0rem;
+  color: #999;
+  /* background: url(../img/search.png) 0.5rem 0.5rem no-repeat; */
+  background-size: 1.6rem;
+  margin: 0.5rem 0;
+}
+
+.home .head header label{
+  position: relative;
+  overflow: hidden;
+}
+
+.home .head header label .am-icon{
+  position: absolute;
+  left:0.8rem;
+  top:0.8rem;
+}
+
+
