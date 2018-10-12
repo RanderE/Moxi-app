@@ -2,7 +2,6 @@ import { TabBar } from 'antd-mobile';
 import React from 'react';
 import {Route,Switch,withRouter,Redirect} from 'react-router-dom';
 
-
 import Home from './Home'
 import List from './List'
 import News from './New'
@@ -34,6 +33,78 @@ class TabBarExample extends React.Component {
           dataSeed:"logId",
           selectedTab: 'brownTab',
           path:'/home'
+        },
+        {
+          id:2,
+          title:"分类",
+          icon:{
+            width: '22px',
+            height: '22px',
+            background: 'url(./imgs/classify.png) center center /  21px 21px no-repeat'
+              },
+          selectedIcon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/classifyAct.png) center center /  21px 21px no-repeat'
+          },
+          // selected:this.state.selectedTab === 'brownTab',
+          dataSeed:"logId",
+          selectedTab: 'blueTab',
+          path:'/list'
+        },
+        {
+          id:3,
+          title:"发现",
+          icon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/activity.png) center center /  21px 21px no-repeat'
+              },
+          selectedIcon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/activityAct.png) center center /  21px 21px no-repeat'
+          },
+          // selected:this.state.selectedTab === 'brownTab',
+          dataSeed:"logId",
+          selectedTab: 'redTab',
+          path:'/news'
+        },
+        {
+          id:4,
+          title:"购物车",
+          icon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/shoppingCart.png) center center /  21px 21px no-repeat'
+              },
+          selectedIcon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/shoppingCartAct.png) center center /  21px 21px no-repeat'
+          },
+          // selected:this.state.selectedTab === 'brownTab',
+          dataSeed:"logId",
+          selectedTab: 'greenTab',
+          path:'/cart'
+        },
+        {
+          id:5,
+          title:"首页",
+          icon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/userCenter.png) center center /  21px 21px no-repeat' 
+              },
+          selectedIcon:{
+            width: '22px',
+            height: '22px',
+            background:'url(./imgs/userCenterAct.png) center center /  21px 21px no-repeat' 
+          },
+          // selected:this.state.selectedTab === 'brownTab',
+          dataSeed:"logId",
+          selectedTab: 'yellowTab',
+          path:'/mine'
         }
       ]
     }
@@ -43,17 +114,7 @@ class TabBarExample extends React.Component {
 
   renderContent(pageText) {
     return (
-      <div style={{ backgroundColor: 'white', height: '0', textAlign: 'center' }}>
-        {/* <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-        <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState({
-              fullScreen: !this.state.fullScreen,
-            });
-          }}
-        ></a> */}
-      </div>
+      <div style={{ backgroundColor: 'white', height: '0', textAlign: 'center' }}></div>
     );
   }
 
@@ -73,194 +134,47 @@ class TabBarExample extends React.Component {
           barTintColor="white"
           hidden={this.state.hidden}
         >
-          {/* {
+          {
             this.state.menu.map(item=>{
               return <TabBar.Item
               title={item.title}
               key={item.id}
-              icon={<div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(./imgs/index.png) center center /  22px 20px no-repeat' }}
+              icon={{ uri: item.background }}
+              icon={(<div style={{
+                width:item.icon.width,
+                height :item.icon.height,
+                background: item.icon.background}}
+              />)
+              }
+              selectedIcon={<div style={{
+                width:item.selectedIcon.width,
+                height :item.selectedIcon.height,
+                background: item.selectedIcon.background}}
               />
               }
-              selectedIcon={<div style={{background={}}}
-              />
-              }
+              selected={this.state.selectedTab === item.selectedTab}
+              onPress={() => {
+                console.log(666)
+                this.go(item.path)
+                this.setState({
+                  selectedTab: item.selectedTab,
+                });
+              }}
+              data-seed="logId"
               >
-
+              {/* {this.renderContent('Home')} */}
+              <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/list" component={List} />
+                <Route path="/news" component={News} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/mine" component={Mine} />
+                {/* <Redirect to="/home"></Redirect> */}
+                
+              </Switch>
               </TabBar.Item>
             })
-          } */}
-          <TabBar.Item
-            title="首页"
-            key="Home"
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(./imgs/index.png) center center /  22px 20px no-repeat' }}
-            />
-            }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(./imgs/indexAct.png) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selected={this.state.selectedTab === 'brownTab'}
-            // badge={1}
-            onPress={() => {
-              console.log(666)
-              this.go('/home')
-              this.setState({
-                selectedTab: 'brownTab',
-              });
-              
-            }}
-            data-seed="logId"
-          >
-            {this.renderContent('Home')}
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/list" component={List} />
-              <Route path="/news" component={News} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/mine" component={Mine} />
-              {/* <Redirect to="/home"></Redirect> */}
-              
-            </Switch>
-          </TabBar.Item>
-          <TabBar.Item
-            title="分类"
-            key="List"
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(./imgs/classify.png) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(./imgs/classifyAct.png) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selected={this.state.selectedTab === 'blueTab'}
-            // badge={1}
-            onPress={() => {
-              this.go('/list')
-              this.setState({
-                selectedTab: 'blueTab',
-              });
-            }}
-            data-seed="logId"
-          >
-            {this.renderContent('Life')}
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/list" component={List} />
-              <Route path="/news" component={News} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/mine" component={Mine} />
-              {/* <Redirect to="/home"></Redirect> */}
-            </Switch>
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(./imgs/activity.png) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(./imgs/activityAct.png) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="发现"
-            key="News"
-            // badge={'new'}
-            selected={this.state.selectedTab === 'redTab'}
-            onPress={() => {
-              this.go('/news')
-              this.setState({
-                selectedTab: 'redTab',
-              });
-            }}
-            data-seed="logId1"
-          >
-            {this.renderContent('Koubei')}
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/list" component={List} />
-              <Route path="/news" component={News} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/mine" component={Mine} />
-              {/* <Redirect to="/home"></Redirect> */}
-            </Switch>
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(./imgs/shoppingCart.png) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(./imgs/shoppingCartAct.png) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="购物车"
-            key="Cart"
-            // dot
-            selected={this.state.selectedTab === 'greenTab'}
-            onPress={() => {
-              this.go('/cart')
-              this.setState({
-                selectedTab: 'greenTab',
-              });
-            }}
-          >
-            {this.renderContent('Friend')}
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/list" component={List} />
-              <Route path="/news" component={News} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/mine" component={Mine} />
-              {/* <Redirect to="/home"></Redirect> */}
-            </Switch>
-          </TabBar.Item>
-          <TabBar.Item
-            icon={{ uri: './imgs/userCenter.png' }}
-            selectedIcon={{ uri: './imgs/userCenterAct.png' }}
-            title="我的"
-            key="Mine"
-            selected={this.state.selectedTab === 'yellowTab'}
-            onPress={() => {
-              this.go('/mine')
-              this.setState({
-                selectedTab: 'yellowTab',
-              });
-            }}
-          >
-            {this.renderContent('Mine')}
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/list" component={List} />
-              <Route path="/news" component={News} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/mine" component={Mine} />
-              {/* <Redirect to="/home"></Redirect> */}
-            </Switch>
-          </TabBar.Item>
+          }
         </TabBar>
 
 

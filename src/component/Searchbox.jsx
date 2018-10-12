@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from 'antd-mobile';
-import {withRouter,Route} from 'react-router-dom';
+import {withRouter,Switch,Route} from 'react-router-dom';
 import Search from './Search';
 
 class SearchBarExample extends React.Component {
@@ -23,9 +23,9 @@ class SearchBarExample extends React.Component {
             <label htmlFor="searchbox" onClick={()=>{this.go('/search')}}>
                 <Icon type="search" size="sm" color="#bbb"/>
                 <input type="text" name="searchbox" placeholder={this.props.placeholder}/> 
-                <Route>
+                <Switch>
 				    <Route path="/search" component={Search} />
-			    </Route>
+			    </Switch>
             </label>
                
         </div>;
