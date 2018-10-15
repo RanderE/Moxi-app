@@ -23,6 +23,7 @@ class GoodClass extends Component{
     }
     
     render(){
+        console.log(ListProClass.offsetHeight)
         return <ul className="ListProClass">
             {
                 this.state.goodClass.map(item => {
@@ -32,6 +33,7 @@ class GoodClass extends Component{
                             <div className="goodhead" ><p>{item.proClassName}</p></div>
                         </a>
                         <ListProClass goodClass={item.ThirdJsons}/>
+                        
                         <div className="classifyMore">点击显示更多分类</div>
                 </li>
                 }) 

@@ -3,7 +3,7 @@ import Banner from './Banner'
 import Features from './Features'
 import axios from 'axios';
 import TenGoodList from './TenGoodList'
-
+import {HashRouter as Router} from 'react-router-dom';
 
 
 class Recommend extends Component{
@@ -43,7 +43,9 @@ class Recommend extends Component{
                     this.setState({ imgHeight:e.target.clientheight});
                 }}/>
            </a>
-           <TenGoodList goodlist={this.state.goodlist}/>
+           <Router>
+                <TenGoodList goodlist={this.state.goodlist}/>
+           </Router>
         </div>
     }
 }

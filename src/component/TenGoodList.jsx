@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 
-// import {HashRouter as Router} from 'react-router-dom';
+import {Route,NavLink} from 'react-router-dom';
+import GoodItem from './GoodItem'
 
 
 class TenGoodList extends Component{
@@ -20,6 +21,7 @@ class TenGoodList extends Component{
                 {
                     goods.map(item=>{
                         return <li key={item.Id}>
+                            <NavLink to={{pathname:'/goodItem', search:'?'+item.Id,state:{Id:item.Id} }}>
                             <img src={item.ProImg} alt=""/>  
                             <br/>
                             <span className="area">{item.ProductFrom}</span>
@@ -28,6 +30,8 @@ class TenGoodList extends Component{
                                 <span className="nowPrice">￥{item.ProUnitPrice}</span>
                                 <del>￥{item.ReferPrice}</del>
                             </p>
+                            </NavLink>
+                            <Route path="/goodItem" component={GoodItem}></Route>
                         </li>
                     })
                 }
