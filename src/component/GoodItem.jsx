@@ -5,7 +5,7 @@ class GoodItem extends Component{
 
     render(){
         return <div className="goodItem">
-
+                123
         </div>
     }
 }

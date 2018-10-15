@@ -1,9 +1,6 @@
-//头部路由包含顶部input和nav
+//头部路由包含顶部input
 import React,{Component} from 'react';
 import Header from './Header';
-
-import {HashRouter as Router} from 'react-router-dom';
-
 
 class Head extends Component{
 

@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
-import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
+import { Tabs, Badge } from 'antd-mobile';
+import {HashRouter as Router} from 'react-router-dom';
+
 
 import Recommend from './Recommend';
 import Bonded from './Bonded';
@@ -44,7 +46,11 @@ class Nav extends Component{
             >
             {
                 this.state.menu.map(item=>{
-                    return <div key={item.id} className="navItem" >{item.Content}</div>
+                    return <div key={item.id} className="navItem" >
+                        <Router>
+                        {item.Content}
+                        </Router>
+                    </div>
                 })
             }
             </Tabs>

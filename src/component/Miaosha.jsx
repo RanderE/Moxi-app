@@ -1,19 +1,16 @@
-//引入工具
+//秒杀跳转的页面
 import React,{Component} from 'react';
+import Header from './Header';
+import TenGoodList from './TenGoodList';
 import axios from 'axios';
 import {NavLink,Route} from 'react-router-dom';
 import {HashRouter } from 'react-router-dom';
 
-
-// 引入组件
-import OtherPage from './OtherPage';
-import TenGoodList from './TenGoodList';
-import SecondNav from './SecondNav';
-
-class Bonded extends Component{
+class Miaosha extends Component{
+    //引入数据
     componentDidMount(){
-        axios.get('http://api.moximoxi.net/api/Home/GetHomeMenuNavigation?ProClassId=245&pageIndex='+this.state.num).then(res=>{
-            console.log(res.data.ReturnObjects.result[0].BannerImagesUrl)
+        axios.get('http://api.moximoxi.net/api/Home/GetHomeMenuNavigation?ProClassId=209&pageIndex='+this.state.num).then(res=>{
+            console.log(res.data.ReturnObjects.result[0].ClassLabelList[0].HomeProductList)
             this.setState({
                 imgurl:res.data.ReturnObjects.result[0].BannerImagesUrl,
                 goodlist:res.data.ReturnObjects.result[0].ClassLabelList[0].HomeProductList
@@ -21,21 +18,27 @@ class Bonded extends Component{
         })
     }
 
+
     constructor(){
         super();
         this.state = {
             num:1,
             imgurl:'http://images.moximoxi.com/column/201805/5636620679279971856.jpg',
             imgHeight:'120px',
-            goodlist:[],
-            content:'保税区闪送'
+            goodlist:[]
         }
     }
 
+
+
+
+
     render(){
-        return <div className="bonded">
-            {/* 图片 */}
-            <NavLink to={{pathname:'/otherPage' }} className="spike">
+        return <div className="miaosha">
+            {/* 头部条和跳转 */}
+            <Header></Header>
+            {/* 路由跳转 */}
+            <NavLink to={{pathname:'/tabbar/miaosha' }} className="spike margin-top">
             <img src={this.state.imgurl}
                 style={{ width: '100%'}}
                 onLoad={(e) => {
@@ -44,13 +47,13 @@ class Bonded extends Component{
                 this.setState({ imgHeight:e.target.clientheight});
                 }}/>
             </NavLink>
-            <Route path="/otherPage" component={OtherPage}></Route>
-            {/* 中间的nav */}
-            <SecondNav content={this.state.content}/>
-
+            <Route path="/miaosha" component={Miaosha}></Route>
+            <HashRouter>
+                <TenGoodList goodlist={this.state.goodlist}/>
+            </HashRouter> 
         </div>
     }
 }
 
 
-export default Bonded
+export default Miaosha

@@ -1,12 +1,15 @@
 import { TabBar } from 'antd-mobile';
 import React from 'react';
-import {Route,Switch,withRouter,Redirect} from 'react-router-dom';
+import {Route,Switch,withRouter} from 'react-router-dom';
 
 import Home from './Home'
 import List from './List'
 import News from './New'
 import Cart from './Cart'
 import Mine from './Mine'
+import Miaosha from './Miaosha'
+
+
 
 class TabBarExample extends React.Component {
 
@@ -32,7 +35,7 @@ class TabBarExample extends React.Component {
           },
           // selected:this.state.selectedTab === 'brownTab',
           selectedTab: 'brownTab',
-          path:'/home',
+          path:'/tabbar/home',
           component:Home
         },
         {
@@ -50,7 +53,7 @@ class TabBarExample extends React.Component {
           },
           // selected:this.state.selectedTab === 'brownTab',
           selectedTab: 'blueTab',
-          path:'/list',
+          path:'/tabbar/list',
           component:List
         },
         {
@@ -68,7 +71,7 @@ class TabBarExample extends React.Component {
           },
           // selected:this.state.selectedTab === 'brownTab',
           selectedTab: 'redTab',
-          path:'/news',
+          path:'/tabbar/news',
           component:News
         },
         {
@@ -86,7 +89,7 @@ class TabBarExample extends React.Component {
           },
           // selected:this.state.selectedTab === 'brownTab',
           selectedTab: 'greenTab',
-          path:'/cart',
+          path:'/tabbar/cart',
           component:Cart
         },
         {
@@ -104,7 +107,7 @@ class TabBarExample extends React.Component {
           },
           // selected:this.state.selectedTab === 'brownTab',
           selectedTab: 'yellowTab',
-          path:'/mine',
+          path:'/tabbar/mine',
           component:Mine
         }
       ],
@@ -160,9 +163,9 @@ class TabBarExample extends React.Component {
         >
         <Switch>
           <Route path={item.path} component={item.component} />
-          <Redirect from="/" to="/home" exact />
-          {/* <Redirect to="/home"></Redirect> */}
-          
+          <Route path='/tabbar' component={Home} exact/>
+          <Route path='/tabbar/miaosha' component={Miaosha} exact/>          
+          {/* <Redirect to="/tabbar/home"/> */}
         </Switch>
         </TabBar.Item>
       })

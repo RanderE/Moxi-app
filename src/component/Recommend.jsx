@@ -1,9 +1,10 @@
 import React,{Component} from 'react';
 import Banner from './Banner'
+import MiaoshaArea from './MiaoshaArea'
 import Features from './Features'
 import axios from 'axios';
 import TenGoodList from './TenGoodList'
-import {HashRouter as Router} from 'react-router-dom';
+import {HashRouter } from 'react-router-dom';
 
 
 class Recommend extends Component{
@@ -12,17 +13,19 @@ class Recommend extends Component{
         this.state = {
             imgurl:{},
             goodlist:[],
-            imgHeight:'120px'
+            bannerdata:[]
         }
         
     }
 
 
     componentDidMount(){
-        axios.get('http://api.moximoxi.net/api/Home/GetHomeList?Id=209&pageStart=0&pageEnd=10').then(res=>{
+        axios.get('http://api.moximoxi.net/api/Home/GetHomeList?Id=209&pageStart=0&pageEnd='+10).then(res=>{
+            console.log(res.data.ReturnObjects.result.ActivityImgList[0])
             this.setState({
                 imgurl:res.data.ReturnObjects.result.ActivityImgList[0],
-                goodlist:res.data.ReturnObjects.result.ActivityImgList[0].ClassLabelList[0].HomeProductList
+                goodlist:res.data.ReturnObjects.result.ActivityImgList[0].ClassLabelList[0].HomeProductList,
+                bannerdata:res.data.ReturnObjects.result.BnnerImgList
             })
         })
 
@@ -32,20 +35,18 @@ class Recommend extends Component{
 
     render(){
         return <div className="recommend">
-           <Banner/>
-           <Features/>
-           <a href="#" className="spike">
-                <img src={this.state.imgurl.ImageUrl}
-                    style={{ width: '100%'}}
-                    onLoad={(e) => {
-                    window.dispatchEvent(new Event('resize'));
-                    //用图片的宽度来撑开容器
-                    this.setState({ imgHeight:e.target.clientheight});
-                }}/>
-           </a>
-           <Router>
+            <HashRouter>
+                <Banner data={this.state.bannerdata}/>
+            </HashRouter>
+            <HashRouter>
+                <Features/>
+            </HashRouter>
+            <HashRouter>
+                <MiaoshaArea imgurl={this.state.imgurl}/>
+            </HashRouter>
+           <HashRouter>
                 <TenGoodList goodlist={this.state.goodlist}/>
-           </Router>
+           </HashRouter>
         </div>
     }
 }

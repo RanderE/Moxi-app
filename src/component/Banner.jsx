@@ -1,41 +1,37 @@
 import React,{Component} from 'react';
-import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 import { Carousel } from 'antd';
 
 
 class Banner extends Component {
-    componentDidMount(){
-        axios.get('http://api.moximoxi.net/api/Home/GetHomeList?Id=209&pageStart=0&pageEnd=10').then(res=>{
-            console.log(res.data.ReturnObjects.result.BnnerImgList)
-            this.setState({
-                data:res.data.ReturnObjects.result.BnnerImgList
-            })
-        })
-    }
-
-
-
     constructor(){
         super();
         this.state = {
             data:[
-                // {Id: 768,ImageUrl: "http://images.moximoxi.com/column/201809/5636739267593328717.png",Title: "代购代拍免手续费"},
-                // {Id: 759,ImageUrl: "http://images.moximoxi.com/column/201805/5636633577733489827.jpg",Title: "味之素"},
-                // {Id: 766,ImageUrl: "http://images.moximoxi.com/column/201807/5636681115937209180.png",Title: "预约服务"}
+                {Id: 768,ImageUrl: "http://images.moximoxi.com/column/201809/5636739267593328717.png",Title: "代购代拍免手续费"},
+                {Id: 759,ImageUrl: "http://images.moximoxi.com/column/201805/5636633577733489827.jpg",Title: "味之素"},
+                {Id: 766,ImageUrl: "http://images.moximoxi.com/column/201807/5636681115937209180.png",Title: "预约服务"}
             ],
             imgHeight:'170px'
         }
     }
 
+    go(Id){
+        console.log(Id)
+        let {history} = this.props;
+        history.push({pathname:'/goodItem', search:'?'+Id,state:{Id:Id}})
+    }
+
 	render(){
+        console.log(this.props.data)
 		return <Carousel
             infinite
             autoplay
             dots
             effect="fade">
                 {
-                    this.state.data.map(item => (
-                        <a key={item.Id} href="#">
+                    this.props.data.map(item => (
+                        <a key={item.Id} onClick={this.go.bind(this,item.Id)}>
                             <img src={item.ImageUrl}
                             style={{ width: '100%', verticalAlign: 'top' ,height:this.state.imgHeight}}
                             onLoad={(e) => {
@@ -47,15 +43,12 @@ class Banner extends Component {
                         </a>
                     ))
                 }
-                    {/* <div><h3>1</h3></div>
-                    <div><h3>2</h3></div>
-                    <div><h3>3</h3></div>
-                    <div><h3>4</h3></div> */}
-
             </Carousel>
 
 
 	}
 }
+
+Banner = withRouter (Banner)
 
 export default Banner
