@@ -12,7 +12,7 @@ class ListProClass extends Component{
     }
     
     render(){
-        console.log(this.props.goodClass)
+        // console.log(this.props.goodClass)
         return <div className="classifyTxt limitheight">
             {
                 this.props.goodClass.map(item=>{

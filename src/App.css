@@ -223,6 +223,7 @@ header label .am-icon{
 }
 
 .tengoodlist ul{
+  margin-top:1.2rem;
   width: 100%;
   overflow: hidden;
 }
@@ -290,6 +291,19 @@ header label .am-icon{
 .miaosha{
   overflow: hidden;
 }
+.hkgoods .am-tabs-default-bar-tab{
+  text-align: center;
+  flex: auto;
+  font-size: 0.8rem;
+  padding: 0.9rem 0;
+}
+
+.hkgoods .am-tabs-default-bar-tab-active{
+  background: url(./imgs/tab_bg.png) no-repeat bottom;
+  color: red;
+}
+
+
 
 /* list */
 .list .am-tabs-tab-bar-wrap{
@@ -362,9 +376,6 @@ header label .am-icon{
   height: 6rem;
 }
 
-.secondNav{
-  /* border-bottom: 1px solid #888;  */
-}
 
 .secondNav ul {
   display: flex;

@@ -6,7 +6,7 @@ import ListProClass from './ListProClass'
 class GoodClass extends Component{
     componentDidMount(){
         axios.get('http://api.moximoxi.net/api/Category/ProClassCategory').then(res=>{
-            console.log(res.data.ReturnObjects.result)
+            // console.log(res.data.ReturnObjects.result)
             this.setState({
                 goodClass:res.data.ReturnObjects.result,
             })
@@ -33,7 +33,6 @@ class GoodClass extends Component{
                             <div className="goodhead" ><p>{item.proClassName}</p></div>
                         </a>
                         <ListProClass goodClass={item.ThirdJsons}/>
-                        
                         <div className="classifyMore">点击显示更多分类</div>
                 </li>
                 }) 

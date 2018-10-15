@@ -47,7 +47,9 @@ class Bonded extends Component{
             <Route path="/otherPage" component={OtherPage}></Route>
             {/* 中间的nav */}
             <SecondNav content={this.state.content}/>
-
+            <HashRouter>
+                <TenGoodList goodlist={this.state.goodlist}/>
+            </HashRouter> 
         </div>
     }
 }
