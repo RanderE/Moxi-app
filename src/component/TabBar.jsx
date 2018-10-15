@@ -9,6 +9,7 @@ import Cart from './Cart'
 import Mine from './Mine'
 
 class TabBarExample extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -30,9 +31,9 @@ class TabBarExample extends React.Component {
             background:'url(./imgs/indexAct.png) center center /  21px 21px no-repeat'
           },
           // selected:this.state.selectedTab === 'brownTab',
-          dataSeed:"logId",
           selectedTab: 'brownTab',
-          path:'/home'
+          path:'/home',
+          component:Home
         },
         {
           id:2,
@@ -48,9 +49,9 @@ class TabBarExample extends React.Component {
             background:'url(./imgs/classifyAct.png) center center /  21px 21px no-repeat'
           },
           // selected:this.state.selectedTab === 'brownTab',
-          dataSeed:"logId",
           selectedTab: 'blueTab',
-          path:'/list'
+          path:'/list',
+          component:List
         },
         {
           id:3,
@@ -66,9 +67,9 @@ class TabBarExample extends React.Component {
             background:'url(./imgs/activityAct.png) center center /  21px 21px no-repeat'
           },
           // selected:this.state.selectedTab === 'brownTab',
-          dataSeed:"logId",
           selectedTab: 'redTab',
-          path:'/news'
+          path:'/news',
+          component:News
         },
         {
           id:4,
@@ -84,9 +85,9 @@ class TabBarExample extends React.Component {
             background:'url(./imgs/shoppingCartAct.png) center center /  21px 21px no-repeat'
           },
           // selected:this.state.selectedTab === 'brownTab',
-          dataSeed:"logId",
           selectedTab: 'greenTab',
-          path:'/cart'
+          path:'/cart',
+          component:Cart
         },
         {
           id:5,
@@ -102,11 +103,12 @@ class TabBarExample extends React.Component {
             background:'url(./imgs/userCenterAct.png) center center /  21px 21px no-repeat' 
           },
           // selected:this.state.selectedTab === 'brownTab',
-          dataSeed:"logId",
           selectedTab: 'yellowTab',
-          path:'/mine'
+          path:'/mine',
+          component:Mine
         }
-      ]
+      ],
+      banner:[]
     }
     this.go = this.go.bind(this);
   }
@@ -119,68 +121,60 @@ class TabBarExample extends React.Component {
   }
 
   go(path){
-    console.log(this)
     let {history} = this.props;
-    console.log(history)
     history.push({pathname:path})
   }
 
   render() {
-    return (
-      <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 400 }}>
-        <TabBar
-          unselectedTintColor="#949494"
-          tintColor="#FF3333"
-          barTintColor="white"
-          hidden={this.state.hidden}
+    return   <TabBar
+    unselectedTintColor="#949494"
+    tintColor="#FF3333"
+    barTintColor="white"
+    hidden={this.state.hidden}
+  >
+    {
+      this.state.menu.map(item=>{
+        return <TabBar.Item
+        title={item.title}
+        key={item.id}
+        icon={{ uri: item.background }}
+        icon={(<div style={{
+          width:item.icon.width,
+          height :item.icon.height,
+          background: item.icon.background}}
+        />)
+        }
+        selectedIcon={<div style={{
+          width:item.selectedIcon.width,
+          height :item.selectedIcon.height,
+          background: item.selectedIcon.background}}
+        />
+        }
+        selected={this.state.selectedTab === item.selectedTab}
+        onPress={() => {
+          this.go(item.path)
+          this.setState({
+            selectedTab: item.selectedTab,
+          });
+        }}
         >
-          {
-            this.state.menu.map(item=>{
-              return <TabBar.Item
-              title={item.title}
-              key={item.id}
-              icon={{ uri: item.background }}
-              icon={(<div style={{
-                width:item.icon.width,
-                height :item.icon.height,
-                background: item.icon.background}}
-              />)
-              }
-              selectedIcon={<div style={{
-                width:item.selectedIcon.width,
-                height :item.selectedIcon.height,
-                background: item.selectedIcon.background}}
-              />
-              }
-              selected={this.state.selectedTab === item.selectedTab}
-              onPress={() => {
-                console.log(666)
-                this.go(item.path)
-                this.setState({
-                  selectedTab: item.selectedTab,
-                });
-              }}
-              data-seed="logId"
-              >
-              {/* {this.renderContent('Home')} */}
-              <Switch>
-                <Route path="/home" component={Home} />
-                <Route path="/list" component={List} />
-                <Route path="/news" component={News} />
-                <Route path="/cart" component={Cart} />
-                <Route path="/mine" component={Mine} />
-                {/* <Redirect to="/home"></Redirect> */}
-                
-              </Switch>
-              </TabBar.Item>
-            })
-          }
-        </TabBar>
+        <Switch>
+          <Route path={item.path} component={item.component} />
+          <Redirect from="/" to="/home" exact />
+          {/* <Redirect to="/home"></Redirect> */}
+          
+        </Switch>
+        </TabBar.Item>
+      })
+    }
+  </TabBar>
+      // <div style={{ position: 'fixed', width: '100%', top: 0 ,height:'300%' }}>
 
 
 
-      </div>
-    );
+
+      {/* </div> */}
+    
   }
 }
 

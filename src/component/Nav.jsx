@@ -1,6 +1,13 @@
 import React,{Component} from 'react';
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
 
+import Recommend from './Recommend';
+import Bonded from './Bonded';
+import Jpgoods from './Jpgoods';
+import Chgoods from './Chgoods';
+import Hkgoods from './Hkgoods';
+
+
 
 const tabs = [
     { title: <Badge >推荐 </Badge> },
@@ -17,11 +24,11 @@ class Nav extends Component{
         super()
         this.state = {
             menu:[
-                {id:1,path:'',Content:'111'},
-                {id:2,path:'',Content:'111'},
-                {id:3,path:'',Content:'111'},
-                {id:4,path:'',Content:'111'},
-                {id:5,path:'',Content:'111'},
+                {id:1,Content:<Recommend/>,name:'Recommend'},
+                {id:2,Content:<Bonded/>,name:'Bonded'},
+                {id:3,Content:<Chgoods/>,name:'Chgoods'},
+                {id:4,Content:<Jpgoods/>,name:'Jpgoods'},
+                {id:5,Content:<Hkgoods/>,name:'Hkgoods'},
 
             ]
         }
@@ -31,25 +38,15 @@ class Nav extends Component{
     render(){
         return <nav className="nav">
             <Tabs tabs={tabs}
-            initialPage={1}
-            onChange={(tab, index) => { console.log('onChange', index, tab); }}
-            onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+            initialPage={0}
+            tabBarPosition="top"
+            tabBarUnderlineStyle={{border:'1px solid red'}}
             >
             {
                 this.state.menu.map(item=>{
-                    return <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>{item.Content}</div>
+                    return <div key={item.id} className="navItem" >{item.Content}</div>
                 })
             }
-
-            {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-                Content of first tab
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-                Content of second tab
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-                Content of third tab
-            </div> */}
             </Tabs>
         </nav>
     }

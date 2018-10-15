@@ -1,7 +1,49 @@
 @import '../node_modules/antd-mobile/dist/antd-mobile.min.css';
+*{
+	margin: 0 ;
+	padding: 0;
+	/*box-sizing: border-box;*/
+}
+ul li{
+	list-style: none;
+}
+img{
+	border: none;
+}
+.container{
+	width: 1500px;
+	margin: 0 auto;
+	padding-left: 0;
+	padding-right:0;
+}
+
+a{
+	text-decoration: none;
+}
+
+input{
+	border: none;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clearfix::after{
+    content:"";
+    display:block;
+    height:0;
+    overflow:hidden;
+    clear:both;
+    visibility: hidden;
+    zoom:1;
+}
+
+
 
 html{
-	font-size:14px;
+  font-size:14px;
 }
 @media screen and (max-width: 375px){
 	html{
@@ -46,29 +88,50 @@ body,html{
 }
 #tab-bar .demo-preview-item .am-tab-bar {
   background-color: white;
+  z-index: 10000 !important;
+  
 }
 
+.am-tab-bar-bar{
+  position: fixed;
+  bottom: 0%;
+}
+
+
 .home{
-  display:flex;
+  /* display:flex; */
+  position: relative;
 }
 
 .home .head{
   width: 100%;
-  height: 7.0rem;
-  position: fixed;
+  height: 4.0rem;
   z-index: 999;
   background: white;
   top:0;
+  position: fixed
 }
 
-.home .head header{
+nav{
+  margin-top:3.5rem;
+}
+
+nav .am-tabs-tab-bar-wrap{
+  /* position: fixed; */
+}
+
+header{
   width: 100%;
   height: 3.5rem;
   overflow: hidden;
   padding: 0.5rem 0;
+  margin-bottom: 0.1rem;
+  z-index: 999;
+  background: #fff;
+  position: fixed;
 }
 
-.home .head header h1{
+header h1{
   display: block;
   float: left;
   width: 20%;
@@ -76,12 +139,12 @@ body,html{
   text-align: center;
   margin: 0%;
 }
-.home .head header h1 img{
+header h1 img{
   width: 2.2rem;
   height: 2.2rem;
   margin: 0.5rem auto;
 }
-.home .head header input{
+header input{
   float: left;
   display: block;
   height:2.1rem;
@@ -97,15 +160,193 @@ body,html{
   margin: 0.5rem 0;
 }
 
-.home .head header label{
+header label{
   position: relative;
   overflow: hidden;
 }
 
-.home .head header label .am-icon{
+header label .am-icon{
   position: absolute;
   left:0.8rem;
   top:0.8rem;
 }
 
+.slider-slide img{width:100%;}
 
+.recommend{
+  width: 100%;
+}
+
+.am-badge{
+  font-size: 0.9rem;
+}
+
+
+.ant-carousel{
+  /* width: 100px; */
+  height: auto;
+  overflow:hidden;
+}
+
+.features ul{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0%;
+}
+
+.features ul li{
+  display: inline-block;
+  margin:1.0rem;
+}
+
+.features ul li a{
+  color:black;
+  font-size: 0.8rem;
+
+}
+
+.features ul li a img{
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.features ul li a span{
+  display: block;
+  margin-top:0.2rem; 
+}
+
+.spike{
+  display: block;
+  overflow: hidden;
+}
+
+.tengoodlist ul{
+  width: 100%;
+}
+
+.tengoodlist ul li{
+  width: 49%;
+  float: left;
+  text-align: center;
+}
+
+.tengoodlist ul li img{
+  width: 8rem;
+  height: 9rem;
+
+}
+
+.tengoodlist ul li .area{
+  /* width: 5.0rem; */
+  padding-left: 1.0rem;
+  padding-right: 1.0rem;
+  height: 1.2em;
+  line-height:1.2em ;
+  display: inline-block;
+  font-size: 0.8rem;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666; 
+  margin-bottom: 0.3rem;
+  color:black;
+}
+
+
+.tengoodlist ul li h5{
+  /* width: 12rem; */
+  height: 1rem;
+  /* 元素不能自动换行 */
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.tengoodlist ul li .price .nowPrice{
+  color:red;
+  font-size:0.9rem;
+}
+
+.tengoodlist ul li .price del{
+  font-size: 0.8rem;
+  margin-left: 0.8rem;
+}
+
+.tengoodlist{
+  overflow: hidden;
+  z-index: 100;
+}
+
+.am-tab-bar{
+  overflow-y:scroll;
+}
+
+.am-tabs-default-bar-tab-active{
+  color:red;
+}
+
+
+/* list */
+.list .am-tabs-tab-bar-wrap{
+  margin-top: 3.5rem;
+  /* border-top:1px solid #ccc; */
+} 
+
+.list .ListProClass .classItem{
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.list .ListProClass .classItem p{
+  font-size: 1.2rem;
+  margin-top: 2.8rem;
+}
+
+
+.list .ListProClass a .goodhead{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.listTab{
+  margin-bottom: 4rem;
+}
+.classifyTxt{
+  width: 100%;
+  padding: 0 5%;
+  font-size: 0.9rem;
+  overflow: hidden;
+  /* margin: 0%; */
+}
+.classifyTxt a{
+  display: inline-block;
+  text-align: left;
+  margin: 0.3rem 1.5rem 0.3rem 0;
+  color: #333;
+}
+
+.ListProClass li{
+  border-bottom: 1rem solid #bbb;
+}
+
+.classifyMore{
+  height: 2.4rem;
+  line-height: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #FF3333;
+  padding: 0.2rem;
+}
+
+.list .am-tabs-content-wrap{
+  margin-top:3.2rem;
+}
+
+.list .am-tabs-default-bar-content{
+  position: fixed;
+  background: #fff;
+}

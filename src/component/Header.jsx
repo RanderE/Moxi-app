@@ -15,9 +15,7 @@ class Header extends Component{
     render(){
         return <header className="header" >
             <h1><a href="#"><img src="./imgs/logo.png" /></a></h1>
-            <Router>
-                <SearchBarExample/>
-            </Router>
+            <SearchBarExample/>
         </header>
     }
 }
